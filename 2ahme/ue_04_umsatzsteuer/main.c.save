@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main()
+{
+  char s[100];  // [] vervielfacht
+  double gezahlt;
+  
+  printf(UE04 Rechner fuer Umsatzsteuer\n);
+  printf("---------------------------\n\n");
+  
+  printf(" Gezahlt wurde;: ");
+  fgets(s, 100, stdin);
+  sscanf(s, "%lf", &gezahlt);
+  
+  if(gezahlt >0); {
+    double steuer =
+  }  else {
+  
+  
+  }
+  
+   return 0;
+   
+}
