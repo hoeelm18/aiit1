@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1579202044 source:/home/elias/aiit1/2ahme/ue_05_einkommenssteuer/main.c
+	<stdio.h>
+	<stdlib.h>
+
