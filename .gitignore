@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/ue_08_funktionen/dist/
+/ue_08_funktionen/build/
+/ue_09_spannungsteiler/build/
+/ue_09_spannungsteiler/dist/
