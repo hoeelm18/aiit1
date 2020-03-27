@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root text="&#34;ue_10_funktionen( int main () )&#34;" comment="&#34;&#34;" color="ffffff" type="program" style="nice">
+	<children>
+		<call text="&#34;double fx = getPositiveDoubleInputValue&#34;" comment="&#34;&#34;" color="ffffff"></call>
+		<call text="&#34;double fy = getPositiveDoubleInputValue&#34;" comment="&#34;&#34;" color="ffffff"></call>
+		<call text="&#34;double ergebnis calcForce&#34;" comment="&#34;&#34;" color="ffffff"></call>
+		<instruction text="&#34;Ausgabe: Ergebnis&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+		<jump text="&#34;return 0;&#34;" comment="&#34;&#34;" color="ffffff"></jump>
+	</children>
+</root>
