@@ -41,13 +41,16 @@ int getSelectMenu() {
     int n;
     double rv;
 
-    do {
+  do {
 
     printf("------------------------\n");
     printf("1 ... Wuerfel\n");
     printf("2 ... Quader\n");
     printf("3 ... Kugel");
     printf("4 ... Programm beenden\n\n");
+    printf("  Auswahl (1-4): ");
+    fgets(s, 100, stdin);
+      sscanf(s, "%d", &rv);
 
     rv = getInputIntegerValue("Auswahl 1-4");
 
@@ -60,7 +63,7 @@ double calcCube() {
 
     printf("Würfel\n");
 
-    do{
+  do{
 
     l = getInputDoubleValue("Länge: ");
 
@@ -81,19 +84,19 @@ double calcCube() {
 
     printf("Quader\n");
 
-    do{
+  do{
 
     l = getInputDoubleValue("Länge: ");
 
     }while (l < 0);
 
-    do{
+  do{
 
     double h = getInputDoubleValue("Höhe: ");
 
     }while (h < 0);
 
-    do {
+  do {
 
     b = getInputDoubleValue("Breite: ");
 
@@ -115,7 +118,7 @@ double calcCube() {
 
     printf("Kugel\n");
 
-    do{
+  do{
 
     d = getInputDoubleValue("Durchmesser: ");
 
@@ -135,22 +138,42 @@ double calcCube() {
 int main()
 
 {
+
+    while (1 == 1) {
     int wahl;
     wahl = getSelectMenu();
 
-    while (1 == 1) {
+    printf("UE11 - Koerperberechnung mit Menuefunktion\n\n");
 
     switch(wahl) {
 
-    case 1: calcCube(); break;
-    case 2: calcCuboid(); break;
-    case 3: calcSphere(); break;
-    case 4: return 0;
+     case 1: {
 
-    }
+            calcCube();
 
-  }
-    return 0;
+            break;
+
+        } case 2: {
+
+            calcCuboid();
+
+            break;
+
+        } case 3: {
+
+            calcSphere();
+
+            break;
+
+        } case 4: { return 0; }
+
+
 }
+
+}
+
+}
+
+
 
 
