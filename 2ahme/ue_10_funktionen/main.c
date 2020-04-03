@@ -34,7 +34,7 @@ double getPositiveDoubleInputValue(char text [])  {
   return funktion1;
 }
 
-double clacForce (double fx, double fy) {
+double calcForce (double fx, double fy) {
   
   double fres = sqrt (fx * fx + fy * fy);
   
