@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root text="&#34;int main()&#34;" comment="&#34;&#34;" color="ffffff" type="program" style="nice">
+	<children>
+		<while text="&#34;Solange ... while (1)&#34;" comment="" color="ffffff">
+			<qWhile>
+				<call text="&#34;int wahl;&#34;,&#34;wahl = getSelectMenu()&#34;" comment="" color="ffffff"></call>
+				<instruction text="&#34;A: UE11 - Koerperberechnung mit Menuefunktion&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<case text="&#34;wahl=&#34;,&#34;1&#34;,&#34;2&#34;,&#34;3&#34;,&#34;4&#34;" comment="&#34;&#34;" color="ffffff">
+					<qCase>
+						<instruction text="&#34;calcCube()&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;break&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qCase>
+					<qCase>
+						<instruction text="&#34;calcCuboid()&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;break&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qCase>
+					<qCase>
+						<instruction text="&#34;calcSphere()&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;break&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qCase>
+					<qCase>
+						<jump text="&#34;return 0&#34;" comment="&#34;&#34;" color="ffffff"></jump>
+					</qCase>
+				</case>
+			</qWhile>
+		</while>
+	</children>
+</root>

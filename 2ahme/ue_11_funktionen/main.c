@@ -14,43 +14,44 @@ int getInputIntegerValue( char text[]) {
     fgets(s, 100, stdin);
     n = sscanf(s, "%d", &rv);
 
-      } while (n != 1);
+  } while (n != 1);
 
   return rv;
 
 }
 double getInputDoubleValue( char text[]) {
 
-   char s[100];
-    int n;
-    double rv;
+  char s[100];
+  int n;
+  double rv;
 
   do {
+
     printf("%s\n", text);
     fgets(s, 100, stdin);
     n = sscanf(s, "%lf", &rv);
 
-      } while (n != 1);
+  } while (n != 1);
 
   return rv;
 
 }
 int getSelectMenu() {
 
-    char s[100];
-    int n;
-    double rv;
+  char s[100];
+  int n;
+  double rv;
 
   do {
 
     printf("------------------------\n");
     printf("1 ... Wuerfel\n");
     printf("2 ... Quader\n");
-    printf("3 ... Kugel");
+    printf("3 ... Kugel\n");
     printf("4 ... Programm beenden\n\n");
     printf("  Auswahl (1-4): ");
     fgets(s, 100, stdin);
-      sscanf(s, "%d", &rv);
+    sscanf(s, "%d", &rv);
 
     rv = getInputIntegerValue("Auswahl 1-4");
 
@@ -59,7 +60,7 @@ int getSelectMenu() {
 }
 double calcCube() {
 
-    double l;
+  double l;
 
     printf("Würfel\n");
 
@@ -75,10 +76,12 @@ double calcCube() {
     printf("Volumen: %.2lf\n", Volumen);
     printf("Oberfläche: %.2lf\n", Oberflaeche);
 
-    return 0;
+  return 0;
+  }
 
  double calcCuboid() {
 
+    double l;
     double b;
     double h;
 
@@ -108,7 +111,7 @@ double calcCube() {
     printf("Volumen: %.2lf\n", Volumen);
     printf("Oberfläche: %.2lf\n", Oberflaeche);
 
-    return 0;
+  return 0;
 
 }
 
@@ -131,7 +134,7 @@ double calcCube() {
     printf("Volumen: %.2lf\n", Volumen);
     printf("Oberfläche: %.2lf\n", Oberflaeche);
 
-    return 0;
+  return 0;
 
 }
 
@@ -139,7 +142,7 @@ int main()
 
 {
 
-    while (1 == 1) {
+    while (1) {
     int wahl;
     wahl = getSelectMenu();
 
@@ -149,30 +152,33 @@ int main()
 
      case 1: {
 
-            calcCube();
+      calcCube();
 
-            break;
+      break;
+    }
+    case 2: {
 
-        } case 2: {
+      calcCuboid();
 
-            calcCuboid();
+      break;
+    }
+    case 3: {
 
-            break;
+      calcSphere();
 
-        } case 3: {
+      break;
 
-            calcSphere();
-
-            break;
-
-        } case 4: { return 0; }
+    }
+    case 4: { return 0; }
 
 
-}
+   }
 
-}
+  }
 
-}
+ }
+
+
 
 
 

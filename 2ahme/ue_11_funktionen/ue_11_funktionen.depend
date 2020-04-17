@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1587118599 source:/home/elias/aiit1/2ahme/ue_11_funktionen/main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
