@@ -36,14 +36,23 @@ int wandleSternInDreieck(double ra, double rb, double rc, double *prab, double *
 int main ()
 {
 
-  int f1;
-  int f2;
+  int rv;
   double ra, rb, rc;
   double rab, rac, rbc;
   
-  f1 = wandleDreieckInStern(10, 15, 20, &ra, &rb, &rc);
-  f2 = wandleSternInDreieck(25, 30, 35, &rab, &rac, &rbc);
-
+  rab = 1; rac = 2; rbc = 3;
+  rv = wandleDreieckInStern(rab, rac, rbc, &ra, &rb, &rc);
+  if(rv != 0) {
+    printf("Test 1: Fehler rv = %d\n", rv);
+  } else {
+    if (ra == 0.333333 && rb == 0.500000 && rc == 1.000000) {
+       printf("OK   ");
+    } else {
+       printf("ERROR");
+    }   
+    printf("rab=%lf, rac=%lf, rbc=%lf -> ra=%lf, rb=%lf, rc=%lf\n", rab, rac, rbc, ra, rb, rc);
+  }
+  
   return 0;
 }
 
