@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
+#include <time.h>
+#include <assert.h>
 
 int wandleDreieckInStern(double rab, double rac, double rbc, double *pRa, double *pRb, double *pRc) {
     
@@ -53,6 +56,7 @@ int testDreieckInStern(double rab, double rac, double rbc,
     }
     return rv;
 }
+
 int testSternInDreieck(double ra, double rb, double rc,
                        double rab, double rac, double rbc, double eps) {
     
@@ -74,6 +78,7 @@ int testSternInDreieck(double ra, double rb, double rc,
     }
     return rv;   
 }
+
 int testNULL() {
     int rv = 0;
     double ra, rb, rc, rab, rac, rbc;
@@ -100,31 +105,53 @@ int testNULL() {
     printf("\n");
     return rv;
 }
+
 int testKleinerGleichNull() {
     int rv = 0;
     double ra, rb, rc, rab, rac, rbc;
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i <= 9; i++) {
         int rvc;
         switch (i) {
-            case 0: rvc = wandleSternInDreieck(-1, 1, 1, &rab, &rac, &rbc); break;
-            case 1: rvc = wandleSternInDreieck(1, -1, 1, &rab, &rac, &rbc); break;
-            case 2: rvc = wandleSternInDreieck(1, 1, -1, &rab, &rac, &rbc); break;
-            case 3: rvc = wandleDreieckInStern(-1, 1, 1, &ra, &rb, &rc); break;
-            case 4: rvc = wandleDreieckInStern(1, -1, 1, &ra, &rb, &rc); break;
-            case 5: rvc = wandleDreieckInStern(1, 1, -1, &ra, &rb, &rc); break;
-               
+            case 0: rvc = wandleSternInDreieck(0.0, 1, 1, &rab, &rac, &rbc); break;
+            case 1: rvc = wandleSternInDreieck(-1.0, 1, 1, &rab, &rac, &rbc); break;
+            case 2: rvc = wandleSternInDreieck(1, 0.0, 1, &rab, &rac, &rbc); break;
+            case 3: rvc = wandleDreieckInStern(1, -1.0, 1, &ra, &rb, &rc); break;
+            case 4: rvc = wandleDreieckInStern(1, 1, 0.0, &ra, &rb, &rc); break;
+            case 5: rvc = wandleDreieckInStern(1, 1, -1.0, &ra, &rb, &rc); break;
+            case 6: rvc = wandleDreieckInStern(0.0, 0.0, 0.0, &ra, &rb, &rc); break;
+            case 7: rvc = wandleDreieckInStern(-1.0, 1, 1, &ra, &rb, &rc); break;
+            case 8: rvc = wandleDreieckInStern(1, -1.0, 1, &ra, &rb, &rc); break;
+            case 9: rvc = wandleDreieckInStern(1, 1, -1.0, &ra, &rb, &rc); break;
+                
         }
         if (rvc == 0) {
             rv++;
             printf("Fehler bei i = %d\n", i);
         }
     }
-    if (rv <= 0) {
+    if (rv == 0) {
         printf("OK: ");
     }
     printf("\n");
     return rv;
+}
+
+int pruefe1000Mal () {
+    double ra;
+    double rab, rac, rbc;
+    int i;
+
+    for (i > 0; i <= 1000; i++) {
+        ra = 1E6.0 * rand () / RAND_MAX;
+        printf("a %f\n", ra);
+        
+        double rb = (10.0 * rand() / RAND_MAX) * ra;
+        double rc = (10.0 * rand() / RAND_MAX) * ra;
+        printf("b %f\n", rb);
+        printf("c %f\n", rc);
+    }   
+    return 0;
 }
 int main() {
  
@@ -145,7 +172,7 @@ int main() {
     printf("Test 3:     "); testKleinerGleichNull();
     
     // Test 4: Prüfe1000Mal
-    printf("Test 4:     ");
+    printf("Test 4:     "); pruefe1000Mal();
   
     return 0;
 }
