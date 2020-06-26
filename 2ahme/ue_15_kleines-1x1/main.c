@@ -45,7 +45,24 @@ int main () {
         }
         printf("\n");
     }
+    printf("\n\nIm Hex-System:\n\n");
+    printf("    |");
+    for (int i = 1; i <= 16; i++) {
+        printf("%4x |", (unsigned)i);
+    }
+    printf("\n");
+    for (int i = 0; i < 101; i++) {
+        printf("-");
+    }
+    printf("\n");
+    for (int i = 1; i <= 16; i++) {
+         printf("%3x |", (unsigned)i);
+         for (int j = 1; j <= 16; j++) {
+            printf("%4x |", (unsigned)w[i][j]);
+    }
+         printf("\n");
     
-
+    }
+    
     return 0;
 }
