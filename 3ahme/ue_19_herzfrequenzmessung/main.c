@@ -97,7 +97,7 @@ int main()
     offset = removeOffset(mdata, MDATA_MAX_SIZE);
     
     if (offset == 1.0)
-    	printf("HuHu\n");
+    	printf("Ups\n");
     else
     	printf("Offset-Differenz %3.2f", 1.0 - offset);
     return 0;
