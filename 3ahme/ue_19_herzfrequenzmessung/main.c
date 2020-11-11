@@ -44,34 +44,40 @@ double removeOffset(double f[], int length)
 
 void calcMovingAveraging(double f[], int length)
 {
-    int sum = 0;
+    int s = 0;
     int n = 10;
     
     
     for(int f_i = 0; f_i < length; f_i++)
       
     {
+      
         if( f_i <= 989){
             
         
             for(int data_i = 0; data_i < n; data_i ++)
             {
-            sum = sum + f[f_i+data_i]; 
+              
+            s = s + f[f_i+data_i]; 
 
             }
-            f[f_i] = sum/n;
+            
+            f[f_i] = s/n;
         
         }else{
-            break;
+            break; 
         }   
-        if( f_i = 990){    
+        if( f_i = 990){ 
+          
           for(int data_i = 0; data_i < 9; data_i ++)
+            
             {
-            sum = sum + f[f_i+data_i]; 
+            
+            s = s + f[f_i+data_i]; 
 
             }
           
-            f[f_i] = sum/n;  
+            f[f_i] = s/n;  
             
         }
         
