@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root text="&#34;void merge(double f[], int links, int mitte, int rechts)&#34;" comment="&#34;&#34;" color="ffffff" type="program" style="nice">
+	<children>
+		<call text="&#34;double l[MAX], r[MAX]; &#34;,&#34;int i,j, k;&#34;,&#34;int nl = mitte - links + 1;&#34;,&#34;int nr = rechts - mitte;&#34;" comment="&#34;&#34;" color="ffffff"></call>
+		<for text="&#34;for (i = 0; i &#60; nl; i++)&#34;,&#34;&#34;,&#34;       &#34;" comment="&#34;&#34;" color="ffffff">
+			<qFor>
+				<instruction text="&#34;l[i] = f[links +i];&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+			</qFor>
+		</for>
+		<for text="&#34;for (j = 0; j &#60; nr; j++)&#34;" comment="&#34;&#34;" color="ffffff">
+			<qFor>
+				<instruction text="&#34; r[j] = f[mitte + 1 + j];&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+			</qFor>
+		</for>
+		<while text="&#34;while( (i &#60; nl) &amp;&amp; (j &#60; nr))&#34;" comment="&#34;&#34;" color="ffffff">
+			<qWhile>
+				<alternative text="&#34;l[i] &#62; r[j]&#34;" comment="&#34;&#34;" color="ffffff">
+					<qTrue>
+						<instruction text="&#34;f[k] = r[j];&#34;,&#34;j++;&#34;,&#34;k++;&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qTrue>
+					<qFalse>
+						<instruction text="&#34;f[k] = l[i];&#34;,&#34;i++;&#34;,&#34;k++;&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qFalse>
+				</alternative>
+			</qWhile>
+		</while>
+		<while text="&#34;while( (i &#60; nl) )&#34;" comment="&#34;&#34;" color="ffffff">
+			<qWhile>
+				<instruction text="&#34;f[k++] = l[i++];&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+			</qWhile>
+		</while>
+		<while text="&#34;while( (j &#60; nr) )&#34;" comment="&#34;&#34;" color="ffffff">
+			<qWhile>
+				<instruction text="&#34;f[k++] = r[j++];&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+			</qWhile>
+		</while>
+	</children>
+</root>

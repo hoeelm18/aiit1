@@ -4,36 +4,32 @@
 
 #define MAX 100
 
-// Ganzzahlige ZZ berechnen
-int berechneGanzeZZ(int ug, int og){
+int randomNumber(int ug, int og) {
     int rv;
     rv = (rand()%(og - ug +1)) + ug;
     return rv;
 }
 
-// FK ZZ berechnen
-double berechneFkZZ(double ug, double og) {
+
+double FkRandomNumber(double ug, double og) {
     double rv;
     rv = ug + rand() * ((og -ug)/RAND_MAX);
     return rv;
 }
 
-// Feld erstellen mit 20 bis 60 Zahlen zwischen 50 und 250
 int feldErstellen(double f[]) {
     int rv;
-    rv = berechneGanzeZZ(20, 60);
+    rv = randomNumber(20, 60);
 
     for(int i = 0; i < rv; i++) {
-        f[i] = berechneFkZZ(50, 250);
+        f[i] = FkRandomNumber(50, 250);
     }
 
     return rv;
 
 }
 
-
-void feldAusgabe(char* txt, double f[], int anzahl)
-{
+void feldAusgabe(char* txt, double f[], int anzahl) {
   int i;
   printf("%s\n", txt);
   for (i=0; i<anzahl; i++)
@@ -43,7 +39,6 @@ void feldAusgabe(char* txt, double f[], int anzahl)
     printf("\n");
 }
 
-// Reihenfolge der Feldelemente im Feld umkehren
 void feldUmkehren(double f[], int anzahl) {
     double tausche = 0;
     anzahl = anzahl - 1;
@@ -55,31 +50,83 @@ void feldUmkehren(double f[], int anzahl) {
     }
 }
 
-// Finde zweitgrößte und zweitkleinste Zahl im Feld
-void miniMax2(double f[], int anzahl, double* mini2, double* maxi2) {
+void minMax2(double f[], int anzahl, double* min2, double* max2) {
 
-    *mini2 = f[1];
-    *maxi2 = f[anzahl - 2];
+    *min2 = f[1];
+    *max2 = f[anzahl - 2];
 }
 
 void bubbleSort(double f[], int anzahl) {
-    double tausche;
+    double tausch;
 
     for (int i = 1; i < anzahl; i++) {
         for (int j = 0; j < anzahl - 1 ; j++)  {
             if (f[j] > f[j + 1]) {
-                tausche = f[j];
+                tausch = f[j];
                 f[j] = f[j + 1];
-                f[j + 1] = tausche;
+                f[j + 1] = tausch;
             }
         }
     }
 }
 
+void merge(double f[], int links, int mitte, int rechts)
+{
+   
+    double l[MAX], r[MAX]; 
+    int i,j, k;
+    int nl = mitte - links + 1;
+    int nr = rechts - mitte;
+   
+    for (i = 0; i < nl; i++)
+        l[i] = f[links +i];
+    for (j = 0; j < nr; j++)
+        r[j] = f[mitte + 1 + j];
+
+    i = 0;
+    j = 0;
+    k = links;
+    while( (i < nl) && (j < nr))
+    {
+        if(l[i] > r[j])
+        {
+            f[k] = r[j];
+            j++;
+            k++;
+        }
+        else
+        {
+            f[k] = l[i];
+            i++;
+            k++;
+        }
+    }
+   
+    while( (i < nl) )
+        f[k++] = l[i++];
+    while( (j < nr) )
+        f[k++] = r[j++];
+}
+void mergeSort2(double f[], int links, int rechts)
+{
+    if(links < rechts)
+    {
+        int mitte = links + (rechts - links)/2;
+        mergeSort2(f, links, mitte);
+        mergeSort2(f, mitte + 1, rechts);
+        merge(f, links, mitte, rechts);
+    }
+}
+void mergeSort(double f[], int anzahl)
+{
+    mergeSort2(f, 0, anzahl-1);
+}
+
 int main() {
-  double f[MAX];    // Feld
-  int anzahl = 0;   // Anzahl der Zahlen im Feld
-  double mini2, maxi2;
+  double f[MAX];
+  int anzahl = 0;
+  double min2, max2;
+
   srand(time(NULL));
 
   anzahl = feldErstellen(f);
@@ -87,9 +134,10 @@ int main() {
   feldUmkehren(f, anzahl);
   feldAusgabe("Feld umgekehrt", f, anzahl);
   bubbleSort(f, anzahl);
+  mergeSort(f, anzahl);
   feldAusgabe("Feld sortiert", f, anzahl);
-  miniMax2(f, anzahl, &mini2, &maxi2);
-  printf("Mini2 : %.2lf\nMaxi2 : %.2lf",mini2, maxi2);
+  minMax2(f, anzahl, &min2, &max2);
+  printf("Min2 : %.2lf\nMax2 : %.2lf",min2, max2);
 
   return 0;
 }
