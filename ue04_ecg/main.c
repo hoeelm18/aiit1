@@ -294,24 +294,52 @@ void analyseECG()
     const int ecg_timeout = ECGDATA_TIMEOUT * ECGDATA_SAMPLE_RATE;
 
     static int offset = 0;
-    static double ecg[ECGDATA_BUFFERSIZE]; //measurement data
+    static double ecg[ECGDATA_BUFFERSIZE]; //Orgianaldaten vom Messgeraet -> werden waerhend des gesamten Ablaufs nicht veraendert!
 
     double ecg_compute[ECGDATA_BUFFERSIZE];
     double rpeak[ECGDATA_BUFFERSIZE];
-    double rpeaksignal[ECGDATA_BUFFERSIZE];
     int ecg_length = 0;
     int rpeak_length = 0;
 
     while(1)
     {
+        //1. Schritt -> Die alten noch nicht analysierten Messdaten zum Anfang des Feldes kopiert
+        if (offset > 0)
+        {
+            for (int i = 0; i < (ecg_length - offset); ++i)
+                ecg[i] = ecg[offset + i];
+        }
+        offset = ecg_length - offset;
 
-        //1.) Alte bereits analysiert Daten aus dem Messdaten-Buffer löschen
-        //2.) Warten bis Datei ECGDATA_FILENAME vom Simulator erstellt wurde und danach in den Buffer einelesen. Benutzen Sie dazu die Funktion readECG
-        //3.) QRS-Komplexe detektieren und Herfrequenzen berechen
-        //4.) Wenn keine Pulse gefünden wurden Schock abgeben (Ausganbe des Textes Schock in der Konsole)
-        //5.) Aktuell berechnete Herzfrequenzen in der Konsole ausgeben
-        //6.) Gelesene Datei löschen benutzen Sie daz den Befehl remove. Der Simulator erstellt dann eine neue Datei mit Messdaten.
-        //Testen Sie mit dem Simulator einen Hersstillstand
+        while(readECG(ECGDATA_FILENAME, ecg + offset, ECGDATA_BUFFERSIZE - offset, &ecg_length) == FILE_ERROR)
+              ;
+        ecg_length = ecg_length + offset;
+
+        for (int i = 0; i < ecg_length; ++i)
+            ecg_compute[i] = ecg[i];
+
+        removeOffset(ecg_compute, ecg_length);
+        calcMovingAveraging(ecg_compute, ecg_length);
+
+        diffSignal(ecg_compute, ecg_length);
+        normalizeSignal(ecg_compute, ecg_length);
+
+        diffSignal(ecg_compute, ecg_length);
+        rpeak_length = findRPeak(ecg_compute, ecg, ecg_length, rpeak, ECGDATA_BUFFERSIZE, &offset);
+
+        if ((ecg_length - offset) > ecg_timeout)
+        {
+            printf("SCHOCK!\n");
+
+            for (int i = 0; i < ecg_timeout; ++i)
+                ecg[i] = ecg[ecg_length - ecg_timeout];
+            offset = 0;
+            ecg_length = ecg_timeout;
+
+        }
+        printHeartRate(rpeak, rpeak_length);
+
+        remove(ECGDATA_FILENAME);
     }
 }
 
