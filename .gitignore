@@ -80,3 +80,5 @@ dkms.conf
 /3ahme/ue_20_umkehrenvonfeldern/dist/
 /3ahme/ue_21_strings/dist/
 /3ahme/ue_21_strings/build/
+/3ahme/Test-ue/build/
+/3ahme/Test-ue/dist/
