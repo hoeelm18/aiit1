@@ -84,3 +84,5 @@ dkms.conf
 /3ahme/Test-ue/dist/
 /Labor/ue02/dist/
 /Labor/ue02/build/
+/Labor/ue_22_namelist/build/
+/Labor/ue_22_namelist/dist/

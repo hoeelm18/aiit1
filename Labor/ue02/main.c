@@ -93,6 +93,22 @@ void eingabe(int *anzPart, int *anzMand, int stimmen[], char namen[][MAXNAMLEN])
 
 }
 
+void baueTabelle(int anzPart, int anzMand, int stimmen[], double tabelle[][MAXPART]){
+  
+  
+  
+  
+}
+
+
+
+void gibTabelleAus(int anzPart, int anzMand, double tabelle[][MAXPART]){
+  
+  
+  
+  
+}
+
 
 int main(){
   
