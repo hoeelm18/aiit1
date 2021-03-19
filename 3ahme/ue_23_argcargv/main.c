@@ -2,7 +2,196 @@
 #include <stdlib.h>
 #include <string.h>
 
+int getOP(char *txt){
+  
+  if(*txt == '+'){
+    return 1;
+  } else if (*txt == '-'){
+    return 2;
+  } else if (*txt == '*'){
+    return 3;
+  }else if (*txt == '/'){
+    return 4;
+  }
+  
+}
+int getLengthOfNumber ( char* txt){
+  
+    int z;
+    int a;
+    int b;
 
+    for (int i = 0; a == 0;i++){
+      
+        if ((txt[i] >= '0' && txt[i] <= '9') || txt[i] == '.' || txt[i] == '-'){
+          
+            z++;
+            
+            if (txt[i] == '.'){
+              
+                b++;
+                
+            }
+            
+            if (b > 1){
+              
+                printf ("\n Du hast zwei Komma eingegeben\n");
+                return -1;
+
+            }
+
+        }else{
+          
+            a++;
+
+        }
+    }
+    return z;
+
+}
+
+int calc(double num1, double num2, int op, double *result){
+  
+  if(op = 1){
+    *result = num1 + num2;
+  } else if(op = 2){
+    *result = num1 - num2;
+  } else if(op = 3){
+    *result = num1 * num2;
+  } else if(op = 3){
+    *result = num1 / num2;
+  }
+  
+}
+
+int parseText (char*txt, int length, double *result ){
+  
+    double num1 = 0.0;
+    double num2 = 0.0;
+    int offset = 0;
+    int op = 0;
+    int bracket_open = 0;
+
+    if ( *txt =='\0'){
+      
+        return -1;
+        
+    }else{
+      
+        op = getOP(txt);
+        
+    }
+    
+    if (txt[offset]=='('){
+      
+        bracket_open = 1;
+        offset = offset++;
+        
+    }else{
+      
+        return 0;
+        
+    }
+    if (txt[offset] == '('){
+      
+        offset = offset + parseText(txt+offset,length-offset,result);
+        return offset;
+        
+    }else{
+      
+        return 0;
+    }
+    
+    if (op == 0){
+      
+        if (sscanf(txt+offset, "%lf", &num1)!=1){
+          
+            return-1;
+            
+        }else{
+          
+            return 0;
+
+        }
+        
+    }else{
+      
+        num1 = *result;
+    }
+    
+    if (op == 0){
+      
+        return -1;
+        offset = offset ++;
+        
+    }else{
+      
+         return 0;
+         
+    }
+    
+    if (txt[offset]=='('){
+        offset = offset+parseText(txt+offset,length-offset,&num2);
+        
+    }else{
+      
+        if (sscanf(txt+offset, "%lf",&num2)==1)
+        {
+            offset = offset+getLengthOfNumber(txt+offset);
+            
+        }else{
+          
+            return-1;
+        }
+    }
+    if((op<3)&&(txt[offset]=='*'|| txt[offset]=='/')&&(txt[offset] != ')' )){
+      
+        offset = offset +parseText(txt+offset,length-offset,&num2);
+        //calc(num1,num2,op,result);
+        
+    }else{
+      
+        //calc(num1,num2,op,result);
+        
+    }
+    
+    if (txt[offset]==')'){
+      
+        if(bracket_open == 0){
+          return offset;
+                        
+        }else{
+          
+            return 0;
+            
+        }
+        offset = offset++;
+        if (*(txt-1)=='*'||*(txt-1)=='*'){
+          
+            return offset;
+                    
+        }else{
+          
+            return 0;
+            
+        }
+
+    }else{
+      
+        return 0;
+        
+    }
+    if (txt[offset]==')'){
+      
+        return offset;
+        
+    }else{
+        return 0;
+        
+    }
+    
+    return (offset+parseText(txt+offset,length-offset,result));
+}
 
 int main (int argc, char* argv[]){
   
