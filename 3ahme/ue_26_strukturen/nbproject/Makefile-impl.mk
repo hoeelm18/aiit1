@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=ue_26_struckturen
+PROJECTNAME=ue_26_strukturen
 
 # Active Configuration
 DEFAULTCONF=Debug
