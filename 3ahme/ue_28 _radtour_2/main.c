@@ -94,7 +94,7 @@ int eingabeGanzeZahl(char *text, int min, int max, int *zahl)
         ok = sscanf(s, "%d", zahl);
         ok &= (*zahl >= min && *zahl <= max);
     }
-    while(!ok);
+    while(*zahl >= min && *zahl <= max);
     return 1;
 }
 
